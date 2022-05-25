@@ -6,7 +6,7 @@
       <form v-on:submit.prevent="solve">
         <div v-for="row in numbers" :key="'row-'+ row">
           <span v-for="column in numbers" :key="'column-'+ column">
-            <input type="number" v-model.number="grid[row][column]" :class="inputClass(row, column)"/>
+            <input type="number" min="1" max="9" v-model.number="grid[row][column]" :class="inputClass(row, column)"/>
           </span>
         </div>
         <button>Solve</button>
@@ -17,6 +17,7 @@
 
 <script>
 import Solver from "@/api/solver";
+import Vue from "vue";
 
 export default {
   data() {
@@ -30,7 +31,14 @@ export default {
       return Array(9).fill().map(() => Array(9).fill())
     },
     solve() {
-      console.log(Solver.solve([].concat(...this.grid)))
+      const result = Solver.solve([].concat(...this.grid))
+      result.forEach((row, i) => {
+        row.forEach((column, j) => {
+          if (i < 9 && j < 9) {
+            Vue.set(this.grid[i], j, column)
+          }
+        })
+      })
     },
     inputClass(row, column) {
       let result = ''
@@ -88,8 +96,6 @@ input.bottom {
 button {
   display: inline-block;
   text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
   border: 1px solid #28a745;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;

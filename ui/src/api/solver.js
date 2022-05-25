@@ -36,6 +36,38 @@ export class Solver {
     })
   }
 
+  choseUniqueValuesInCol(hints) {
+    return hints.map((hintValues, idx)=> {
+      if (hintValues.length === 1) return hintValues
+      const col = this.belongsToColumn(idx);
+      const row = this.belongsToRow(idx);
+      const colItems = this.colItems(hints, col)
+      const colHints = new Set(colItems
+      .filter((i,idx)=> idx !== row)
+      .flat())
+      const result = hintValues.filter(i=> !colHints.has(i))
+      if (result.length === 1) return [result]
+      return hintValues
+    })
+  }
+
+  choseUniqueValuesInSquare(hints) {
+    return hints.map((hintValues, idx)=> {
+      if (hintValues.length === 1) return hintValues
+      const col = this.belongsToColumn(idx) % 3;
+      const row = this.belongsToRow(idx) % 3;
+      const squareIdx = col * 3 + row
+      const square = this.belongsToSquare(idx);
+      const items = this.squareItems(hints, square)
+      const colHints = new Set(items
+      .filter((i,idx)=> idx !== squareIdx)
+      .flat())
+      const result = hintValues.filter(i=> !colHints.has(i))
+      if (result.length === 1) return [result]
+      return hintValues
+    })
+  }
+
   hints(input){
     if (input.length !== 81) {
       throw new Error("Invalid input")
@@ -55,6 +87,8 @@ export class Solver {
       .filter(v => !squareItems.includes(v))
     })
     r = this.choseUniqueValuesInRow(r)
+    r = this.choseUniqueValuesInCol(r)
+    r = this.choseUniqueValuesInSquare(r)
     console.log(r)
     return r
   }

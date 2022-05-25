@@ -12,6 +12,7 @@
         </div>
         <button type="submit">Solve</button>
         <button type="button" v-on:click="demo">Demo</button>
+        <button type="button" v-on:click="easy">Easy</button>
       </form>
     </div>
   </div>
@@ -59,6 +60,19 @@ export default {
     },
     demo() {
       this.grid = [[1, 2, 3, 4, 5, 6, 7, 8, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]]
+      this.$forceUpdate()
+    },
+    easy() {
+      this.grid = [
+          [undefined, 5, 9, undefined, 6, undefined, 4, 8, undefined],
+        [undefined, 8, 2, 9, undefined, 4, 7, 5, undefined],
+        [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
+        [undefined, 4, 6, 5, undefined, 7, 3, 9, undefined],
+        [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
+        [undefined, 7, 1, 3, undefined, 9, 2, 4, undefined],
+        [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
+        [undefined, 2, 4, 6, undefined, 3, 1, 7, undefined],
+        [undefined, 1, 3, undefined, 2, undefined, 9, 6, undefined]]
       this.$forceUpdate()
     }
   },

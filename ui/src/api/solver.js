@@ -9,8 +9,6 @@ export class Solver {
     }
     let result = input.map(()=>[1,2,3,4,5,6,7,8,9])
 
-    console.log('row number', input)
-
     return result.map((values ,idx)=> {
       if (input[idx]) {
         return [input[idx]]

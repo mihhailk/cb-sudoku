@@ -7,8 +7,7 @@ describe('sudoku solver', () => {
   })
 
   test('for empty input returns all possible values', ()=> {
-    const input = Array.from(Array(81).keys()).map(()=>'')
-    const result = solver.solve(input)
+    const result = solver.solve(solver.emptyGrid())
     expect(result.length).toBe(81)
     expect(result[0]).toStrictEqual([1,2,3,4,5,6,7,8,9])
   })

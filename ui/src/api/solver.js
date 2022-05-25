@@ -13,10 +13,17 @@ export class Solver {
       if (input[idx]) {
         return [input[idx]]
       }
-      const rowNumber =this.belongsToRow(idx)
-      const rowItems = input.filter((inputValue, idx2) => this.belongsToRow(idx2) === rowNumber)
+      const rowItems = this.rowItems(input, this.belongsToRow(idx))
       return values.filter(v => !rowItems.includes(v))
     })
+  }
+
+  rowItems(array, rowNumber) {
+    return array.filter((inputValue, idx2) => this.belongsToRow(idx2) === rowNumber)
+  }
+
+  colItems(array, colNumber) {
+    return array.filter((inputValue, idx2) => this.belongsToColumn(idx2) === colNumber)
   }
 
   belongsToRow(i) {

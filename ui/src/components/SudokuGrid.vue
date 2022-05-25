@@ -38,6 +38,8 @@ export default {
       if (column === 0) result += ' left'
       if (row === this.numbers.length - 1) result += ' bottom'
       if (column === this.numbers.length - 1) result += ' right'
+      if ((row + 1) % 3 === 0) result += ' bottom'
+      if ((column + 1) % 3 === 0) result += ' right'
       return result
     }
   },
@@ -63,7 +65,7 @@ input {
   text-align: center;
 }
 
-input:focus{
+input:focus {
   outline: none;
 }
 

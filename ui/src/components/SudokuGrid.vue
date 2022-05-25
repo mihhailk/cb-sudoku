@@ -2,7 +2,7 @@
   <div>
     <h1>Make me solve sudoku</h1>
     <div>
-      <span>Add a digit (from 1-9) to any field</span>
+      <span>Add some digits (from 1-9) to any field</span>
       <form v-on:submit.prevent="solve" ref="form">
         <div v-for="row in numbers" :key="'row-'+ row">
           <span v-for="column in numbers" :key="'column-'+ column">

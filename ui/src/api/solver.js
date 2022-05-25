@@ -24,14 +24,14 @@ export class Solver {
   }
 
   rowItems(array, rowNumber) {
-    return array.filter((inputValue, idx2) => this.belongsToRow(idx2) === rowNumber)
+    return array.filter((inputValue, idx2) => Number(this.belongsToRow(idx2)) === Number(rowNumber))
   }
 
   colItems(array, colNumber) {
-    return array.filter((inputValue, idx2) => this.belongsToColumn(idx2) === colNumber)
+    return array.filter((inputValue, idx2) => Number(this.belongsToColumn(idx2)) === Number(colNumber))
   }
   squareItems(array, colNumber) {
-    return array.filter((inputValue, idx2) => this.belongsToSquare(idx2) === colNumber)
+    return array.filter((inputValue, idx2) => Number(this.belongsToSquare(idx2)) === Number(colNumber))
   }
 
   belongsToRow(i) {

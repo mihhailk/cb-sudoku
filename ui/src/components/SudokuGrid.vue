@@ -19,6 +19,7 @@
 <script>
 import Solver from "@/api/solver";
 import Vue from "vue";
+import Validator from "@/helper/validator";
 
 export default {
   data() {
@@ -36,6 +37,8 @@ export default {
       if (!this.$refs.form.checkValidity()) alert('please fill inputs correctly')
       const input = [].concat(...this.grid)
       console.log('input for solver: ' + input)
+      if (!Validator.validateSudokuAsArray(input)) alert('only unique numbers per row, column and square')
+
       const result = Solver.solve(input)
       console.log(result)
       result.forEach((row, i) => {

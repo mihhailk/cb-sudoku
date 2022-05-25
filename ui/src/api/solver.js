@@ -31,7 +31,7 @@ export class Solver {
                             .filter((i,idx)=> idx !== col)
                             .flat())
       const result = hintValues.filter(i=> !rowHints.has(i))
-      if (result.length === 1) return [result]
+      if (result.length === 1) return result
       return hintValues
     })
   }
@@ -46,7 +46,7 @@ export class Solver {
       .filter((i,idx)=> idx !== row)
       .flat())
       const result = hintValues.filter(i=> !colHints.has(i))
-      if (result.length === 1) return [result]
+      if (result.length === 1) return result
       return hintValues
     })
   }
@@ -63,7 +63,7 @@ export class Solver {
       .filter((i,idx)=> idx !== squareIdx)
       .flat())
       const result = hintValues.filter(i=> !colHints.has(i))
-      if (result.length === 1) return [result]
+      if (result.length === 1) return result
       return hintValues
     })
   }

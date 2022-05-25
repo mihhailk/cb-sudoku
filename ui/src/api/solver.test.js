@@ -62,7 +62,7 @@ describe('sudoku solver', () => {
     input[24] = 2
     input[25] = 3
     const result = solver.solve(input)
-    expect(result[26]).toStrictEqual([1])
+    expect(result[26]).toStrictEqual(1)
   })
 
   test('output does not contain items which exists in same square', ()=>{

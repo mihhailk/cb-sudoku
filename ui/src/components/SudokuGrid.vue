@@ -14,6 +14,7 @@
         <button type="button" v-on:click="demo">Demo</button>
         <button type="button" v-on:click="easy">Easy</button>
         <button type="button" v-on:click="hard">Hard</button>
+        <button type="button" v-on:click="expert">Expert</button>
       </form>
     </div>
   </div>
@@ -87,6 +88,19 @@ export default {
         [undefined, 9, undefined, undefined, undefined, undefined, undefined, undefined, 6],
         [7, 4, undefined, 2, undefined, undefined, undefined, undefined, undefined],
         [undefined, undefined, undefined, undefined, 7, 9, 5, 4, undefined]]
+      this.$forceUpdate()
+    },
+    expert() {
+      this.grid = [
+        [undefined, undefined, 8, undefined, 7, undefined, 2, undefined, undefined],
+        [undefined, 5, undefined, 6, undefined, 2, undefined, 1, undefined],
+        [2, undefined, undefined, undefined, undefined, undefined, undefined, undefined, 5],
+        [undefined, undefined, 3, 2, undefined, 7, 4, undefined, undefined],
+        [5, undefined, undefined, undefined, 4, undefined, undefined, undefined, 2],
+        [undefined, undefined, 2, 9, undefined, 3, 1, undefined, undefined],
+        [3, undefined, undefined, undefined, undefined, undefined, undefined, undefined, 9],
+        [undefined, 4, undefined, 8, undefined, 1, undefined, 2, undefined],
+        [undefined, undefined, 6, undefined, 2, undefined, 5, undefined, undefined]]
       this.$forceUpdate()
     },
   },

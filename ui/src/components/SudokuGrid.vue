@@ -36,17 +36,12 @@ export default {
     solve() {
       if (!this.$refs.form.checkValidity()) alert('please fill inputs correctly')
       const input = [].concat(...this.grid)
-      console.log('input for solver: ' + input)
       if (!Validator.validateSudokuAsArray(input)) alert('only unique numbers per row, column and square')
 
       const result = Solver.solve(input)
-      console.log(result)
       result.forEach((row, i) => {
-        console.log('index' + i)
         const rowNumber = Math.floor(i / 9)
-        console.log('row number:' + rowNumber)
         const columnNumber = rowNumber === 0 ? i : i - 9 * rowNumber
-        console.log('col number: ' + columnNumber)
         if (row.length > 1) Vue.set(this.hints[rowNumber], columnNumber, row)
         else Vue.set(this.grid[rowNumber], columnNumber, row)
       })

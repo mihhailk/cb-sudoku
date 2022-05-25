@@ -42,7 +42,7 @@ export default {
         console.log('index' + i)
         const rowNumber = Math.floor(i / 9)
         console.log('row number:' + rowNumber)
-        const columnNumber = rowNumber === 0 ? i : Math.floor(i / rowNumber)
+        const columnNumber = rowNumber === 0 ? i : i - 9 * rowNumber
         console.log('col number: ' + columnNumber)
         if (row.length > 1) Vue.set(this.hints[rowNumber], columnNumber, row)
         else Vue.set(this.grid[rowNumber], columnNumber, row)

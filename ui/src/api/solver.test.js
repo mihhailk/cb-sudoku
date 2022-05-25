@@ -27,6 +27,35 @@ describe('sudoku solver', () => {
   })
 
   test('output does not contain items which exists in same column', ()=>{
+    let input = solver.emptyGrid();
+    input[2] = 3
+    const result = solver.solve(input)
+    expect(result[2]).toStrictEqual([3])
+    expect(result[2+9 * 1]).toStrictEqual([1,2,4,5,6,7,8,9])
+    expect(result[2+9 * 2]).toStrictEqual([1,2,4,5,6,7,8,9])
+    expect(result[2+9 * 3]).toStrictEqual([1,2,4,5,6,7,8,9])
+    expect(result[2+9 * 4]).toStrictEqual([1,2,4,5,6,7,8,9])
+    expect(result[2+9 * 5]).toStrictEqual([1,2,4,5,6,7,8,9])
+    expect(result[2+9 * 6]).toStrictEqual([1,2,4,5,6,7,8,9])
+    expect(result[2+9 * 7]).toStrictEqual([1,2,4,5,6,7,8,9])
+  })
+
+  test('output does not contain items which exists in same Cell', ()=>{
+    let input = solver.emptyGrid();
+    input[2] = 3
+    const result = solver.solve(input)
+    expect(result[0]).toStrictEqual([1,2,4,5,6,7,8,9])
+    expect(result[1]).toStrictEqual([1,2,4,5,6,7,8,9])
+    expect(result[2]).toStrictEqual([3])
+    expect(result[9]).toStrictEqual([1,2,4,5,6,7,8,9])
+    expect(result[10]).toStrictEqual([1,2,4,5,6,7,8,9])
+    expect(result[11]).toStrictEqual([1,2,4,5,6,7,8,9])
+    expect(result[18]).toStrictEqual([1,2,4,5,6,7,8,9])
+    expect(result[19]).toStrictEqual([1,2,4,5,6,7,8,9])
+    expect(result[20]).toStrictEqual([1,2,4,5,6,7,8,9])
+  })
+
+  test('output does not contain items which exists in same column', ()=>{
 
   })
 

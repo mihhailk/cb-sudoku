@@ -14,7 +14,12 @@ export class Solver {
         return [input[idx]]
       }
       const rowItems = this.rowItems(input, this.belongsToRow(idx))
-      return values.filter(v => !rowItems.includes(v))
+      const colItems = this.colItems(input, this.belongsToColumn(idx))
+      const squareItems = this.squareItems(input, this.belongsToSquare(idx))
+      return values
+      .filter(v => !rowItems.includes(v))
+      .filter(v => !colItems.includes(v))
+      .filter(v => !squareItems.includes(v))
     })
   }
 
@@ -24,6 +29,9 @@ export class Solver {
 
   colItems(array, colNumber) {
     return array.filter((inputValue, idx2) => this.belongsToColumn(idx2) === colNumber)
+  }
+  squareItems(array, colNumber) {
+    return array.filter((inputValue, idx2) => this.belongsToSquare(idx2) === colNumber)
   }
 
   belongsToRow(i) {

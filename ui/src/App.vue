@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <SudokuGrid/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SudokuGrid from "@/components/SudokuGrid";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    SudokuGrid
   }
 }
 </script>

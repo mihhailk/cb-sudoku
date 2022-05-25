@@ -3,10 +3,11 @@
     <h1>Make me solve sudoku</h1>
     <div>
       <span>Add a digit (from 1-9) to any field</span>
-      <form v-on:submit.prevent="solve">
+      <form v-on:submit.prevent="solve" ref="form">
         <div v-for="row in numbers" :key="'row-'+ row">
           <span v-for="column in numbers" :key="'column-'+ column">
-            <input type="number" min="1" max="9" v-model.number="grid[row][column]" :class="inputClass(row, column)"/>
+            <input type="tel" maxlength="1" minlength="1" min="1" max="9" v-model.number="grid[row][column]"
+                   :class="inputClass(row, column)"/>
           </span>
         </div>
         <button>Solve</button>
@@ -32,11 +33,17 @@ export default {
       return Array(9).fill().map(() => Array(9).fill())
     },
     solve() {
-      const result = Solver.solve([].concat(...this.grid))
+      if (!this.$refs.form.checkValidity()) alert('please fill inputs correctly')
+      const input = [].concat(...this.grid)
+      console.log('input for solver: ' + input)
+      const result = Solver.solve(input)
       console.log(result)
       result.forEach((row, i) => {
-        const rowNumber = i % 8
-        const columnNumber = i / rowNumber
+        console.log('index' + i)
+        const rowNumber = Math.floor(i / 9)
+        console.log('row number:' + rowNumber)
+        const columnNumber = rowNumber === 0 ? i : Math.floor(i / rowNumber)
+        console.log('col number: ' + columnNumber)
         if (row.length > 1) Vue.set(this.hints[rowNumber], columnNumber, row)
         else Vue.set(this.grid[rowNumber], columnNumber, row)
       })

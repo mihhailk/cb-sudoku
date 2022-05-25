@@ -55,12 +55,23 @@ describe('sudoku solver', () => {
     expect(result[20]).toStrictEqual([1,2,4,5,6,7,8,9])
   })
 
-  test('output does not contain items which exists in same column', ()=>{
-
+  test('If one of hint items is unique for that row return it', ()=>{
+    let input = solver.emptyGrid();
+    input[0] = 1
+    input[13] = 1
+    input[24] = 2
+    input[25] = 3
+    const result = solver.solve(input)
+    expect(result[26]).toStrictEqual([1])
   })
 
   test('output does not contain items which exists in same square', ()=>{
 
+  })
+
+  test('equals', ()=>{
+    expect(solver.equals([1,2,'',3], [1,2,'',3])).toBe(true)
+    expect(solver.equals(['',2,'',3], [1,2,'',3])).toBe(false)
   })
 
   test('belongs to row', ()=> {

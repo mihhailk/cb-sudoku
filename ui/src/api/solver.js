@@ -4,7 +4,36 @@ export class Solver {
   }
 
   solve(input) {
-    return this.hints(input)
+    const hints =  this.hints(input)
+
+    const result =  hints.map(r=> r.length === 1 ? r[0]:'')
+     if (!this.equals(input, result)) {
+       return this.solve(result)
+     } else {
+       return result
+     }
+  }
+
+  equals(a, b) {
+    for (let i = 0; i < 81; i++) {
+      if (a[i] !== b[i]) return false
+    }
+    return true
+  }
+
+  choseUniqueValuesInRow(hints) {
+    return hints.map((hintValues, idx)=> {
+      if (hintValues.length === 1) return hintValues
+      const col = this.belongsToColumn(idx);
+      const row = this.belongsToRow(idx);
+      const rowItems = this.rowItems(hints, row)
+      const rowHints = new Set(rowItems
+                            .filter((i,idx)=> idx !== col)
+                            .flat())
+      const result = hintValues.filter(i=> !rowHints.has(i))
+      if (result.length === 1) return [result]
+      return hintValues
+    })
   }
 
   hints(input){
@@ -25,6 +54,7 @@ export class Solver {
       .filter(v => !colItems.includes(v))
       .filter(v => !squareItems.includes(v))
     })
+    r = this.choseUniqueValuesInRow(r)
     console.log(r)
     return r
   }

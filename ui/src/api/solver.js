@@ -3,13 +3,17 @@ export class Solver {
     return Array.from(Array(81).keys()).map(()=>'')
   }
 
-  solve(input){
+  solve(input) {
+    return this.hints(input)
+  }
+
+  hints(input){
     if (input.length !== 81) {
       throw new Error("Invalid input")
     }
     let result = input.map(()=>[1,2,3,4,5,6,7,8,9])
 
-    return result.map((values ,idx)=> {
+    var r =  result.map((values ,idx)=> {
       if (input[idx]) {
         return [input[idx]]
       }
@@ -21,6 +25,8 @@ export class Solver {
       .filter(v => !colItems.includes(v))
       .filter(v => !squareItems.includes(v))
     })
+    console.log(r)
+    return r
   }
 
   rowItems(array, rowNumber) {

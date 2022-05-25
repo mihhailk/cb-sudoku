@@ -3,11 +3,11 @@ import solver from "./solver"
 describe('sudoku solver', () => {
   test('empty input', () => {
     const input = []
-    expect(() => solver.solve(input)).toThrow(Error)
+    expect(() => solver.hints(input)).toThrow(Error)
   })
 
   test('for empty input returns all possible values', ()=> {
-    const result = solver.solve(solver.emptyGrid())
+    const result = solver.hints(solver.emptyGrid())
     expect(result.length).toBe(81)
     expect(result[0]).toStrictEqual([1,2,3,4,5,6,7,8,9])
   })
@@ -15,7 +15,7 @@ describe('sudoku solver', () => {
   test('output does not contain items which exists in same row', ()=>{
     let input = solver.emptyGrid();
     input[2] = 3
-    const result = solver.solve(input)
+    const result = solver.hints(input)
     expect(result[0]).toStrictEqual([1,2,4,5,6,7,8,9])
     expect(result[1]).toStrictEqual([1,2,4,5,6,7,8,9])
     expect(result[2]).toStrictEqual([3])
@@ -29,7 +29,7 @@ describe('sudoku solver', () => {
   test('output does not contain items which exists in same column', ()=>{
     let input = solver.emptyGrid();
     input[2] = 3
-    const result = solver.solve(input)
+    const result = solver.hints(input)
     expect(result[2]).toStrictEqual([3])
     expect(result[2+9 * 1]).toStrictEqual([1,2,4,5,6,7,8,9])
     expect(result[2+9 * 2]).toStrictEqual([1,2,4,5,6,7,8,9])
@@ -40,10 +40,10 @@ describe('sudoku solver', () => {
     expect(result[2+9 * 7]).toStrictEqual([1,2,4,5,6,7,8,9])
   })
 
-  test('output does not contain items which exists in same Cell', ()=>{
+  test('output does not contain items which exists in same Squre', ()=>{
     let input = solver.emptyGrid();
     input[2] = 3
-    const result = solver.solve(input)
+    const result = solver.hints(input)
     expect(result[0]).toStrictEqual([1,2,4,5,6,7,8,9])
     expect(result[1]).toStrictEqual([1,2,4,5,6,7,8,9])
     expect(result[2]).toStrictEqual([3])

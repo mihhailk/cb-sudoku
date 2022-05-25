@@ -10,7 +10,8 @@
                    :class="inputClass(row, column)"/>
           </span>
         </div>
-        <button>Solve</button>
+        <button type="submit">Solve</button>
+        <button type="button" v-on:click="demo">Demo</button>
       </form>
     </div>
   </div>
@@ -37,7 +38,7 @@ export default {
       if (!this.$refs.form.checkValidity()) alert('please fill inputs correctly')
       const input = [].concat(...this.grid)
       if (!Validator.validateSudokuAsArray(input)) alert('only unique numbers per row, column and square')
-
+      console.log(input)
       const result = Solver.solve(input)
       result.forEach((row, i) => {
         const rowNumber = Math.floor(i / 9)
@@ -55,6 +56,10 @@ export default {
       if ((row + 1) % 3 === 0) result += ' bottom'
       if ((column + 1) % 3 === 0) result += ' right'
       return result
+    },
+    demo() {
+      this.grid = [[1, 2, 3, 4, 5, 6, 7, 8, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined], [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]]
+      this.$forceUpdate()
     }
   },
 
@@ -110,6 +115,7 @@ button {
   color: #fff;
   background-color: #28a745;
   cursor: pointer;
+  margin-left: 16px;
 }
 
 input[type=number]::-webkit-inner-spin-button,

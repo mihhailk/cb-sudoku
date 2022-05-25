@@ -13,6 +13,7 @@
         <button type="submit">Solve</button>
         <button type="button" v-on:click="demo">Demo</button>
         <button type="button" v-on:click="easy">Easy</button>
+        <button type="button" v-on:click="hard">Hard</button>
       </form>
     </div>
   </div>
@@ -74,7 +75,20 @@ export default {
         [undefined, 2, 4, 6, undefined, 3, 1, 7, undefined],
         [undefined, 1, 3, undefined, 2, undefined, 9, 6, undefined]]
       this.$forceUpdate()
-    }
+    },
+    hard() {
+      this.grid = [
+        [undefined, undefined, undefined, undefined, 1, 8, 3, 5, undefined],
+        [6, 1, undefined, 4, undefined, undefined, undefined, undefined, undefined],
+        [undefined, 2, undefined, undefined, undefined, undefined, undefined, undefined, 4],
+        [undefined, 3, undefined, undefined, undefined, 4, 7, undefined, undefined],
+        [undefined, undefined, undefined, undefined, undefined, undefined, 8, undefined, 9],
+        [undefined, 5, undefined, undefined, undefined, 3, 4, undefined, undefined],
+        [undefined, 9, undefined, undefined, undefined, undefined, undefined, undefined, 6],
+        [7, 4, undefined, 2, undefined, undefined, undefined, undefined, undefined],
+        [undefined, undefined, undefined, undefined, 7, 9, 5, 4, undefined]]
+      this.$forceUpdate()
+    },
   },
 
 }

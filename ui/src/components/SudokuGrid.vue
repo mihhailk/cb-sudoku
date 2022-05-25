@@ -43,7 +43,7 @@ export default {
         const rowNumber = Math.floor(i / 9)
         const columnNumber = rowNumber === 0 ? i : i - 9 * rowNumber
         if (row.length > 1) Vue.set(this.hints[rowNumber], columnNumber, row)
-        else Vue.set(this.grid[rowNumber], columnNumber, row[0])
+        else Vue.set(this.grid[rowNumber], columnNumber, row)
       })
     },
     inputClass(row, column) {

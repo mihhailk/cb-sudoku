@@ -4,9 +4,9 @@
     <div>
       <span>Input 10 digits to any field</span>
       <form v-on:submit.prevent="solve">
-        <div v-for="number in numbers" :key="'row-'+ number">
-          <span v-for="number in numbers" :key="'column-'+ number">
-            <input type="number"/>
+        <div v-for="row in numbers" :key="'row-'+ row">
+          <span v-for="column in numbers" :key="'column-'+ column">
+            <input type="number" v-model.number="grid[row][column]" :class="inputClass(row, column)"/>
           </span>
         </div>
         <button>Solve</button>
@@ -16,15 +16,29 @@
 </template>
 
 <script>
+import Solver from "@/api/solver";
+
 export default {
   data() {
     return {
-      numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      numbers: [...Array(9).keys()],
+      grid: this.emptyGrid()
     }
   },
   methods: {
+    emptyGrid() {
+      return Array(9).fill().map(() => Array(9).fill())
+    },
     solve() {
-      console.log("solving")
+      console.log(Solver.solve([].concat(...this.grid)))
+    },
+    inputClass(row, column) {
+      let result = ''
+      if (row === 0) result += 'top'
+      if (column === 0) result += ' left'
+      if (row === this.numbers.length - 1) result += ' bottom'
+      if (column === this.numbers.length - 1) result += ' right'
+      return result
     }
   },
 
@@ -33,14 +47,54 @@ export default {
 
 <style scoped>
 form {
-  margin: 0 auto;
   max-width: 500px;
+  margin: 0 auto;
+}
+
+form button {
+  margin-top: 15px;
 }
 
 input {
   width: 30px;
   height: 30px;
-  padding-left: 2px;
+  border: 0.5px dashed;
+}
+
+input:focus{
+  outline: none;
+}
+
+input.top {
+  border-top: 2px solid;
+}
+
+input.left {
+  border-left: 2px solid;
+}
+
+input.right {
+  border-right: 2px solid;
+}
+
+input.bottom {
+  border-bottom: 2px solid;
+}
+
+button {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border: 1px solid #28a745;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  color: #fff;
+  background-color: #28a745;
+  cursor: pointer;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 input[type=number]::-webkit-inner-spin-button,

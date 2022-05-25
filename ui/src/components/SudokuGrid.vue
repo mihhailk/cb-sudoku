@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Make me solve sudoku</h1>
+    <h1>Make me solve a sudoku</h1>
     <div>
       <span>Add some digits (from 1-9) to any field</span>
       <form v-on:submit.prevent="solve" ref="form">

@@ -23,7 +23,8 @@ export default {
   data() {
     return {
       numbers: [...Array(9).keys()],
-      grid: this.emptyGrid()
+      grid: this.emptyGrid(),
+      hints: this.emptyGrid()
     }
   },
   methods: {
@@ -32,12 +33,12 @@ export default {
     },
     solve() {
       const result = Solver.solve([].concat(...this.grid))
+      console.log(result)
       result.forEach((row, i) => {
-        row.forEach((column, j) => {
-          if (i < 9 && j < 9) {
-            Vue.set(this.grid[i], j, column)
-          }
-        })
+        const rowNumber = i % 8
+        const columnNumber = i / rowNumber
+        if (row.length > 1) Vue.set(this.hints[rowNumber], columnNumber, row)
+        else Vue.set(this.grid[rowNumber], columnNumber, row)
       })
     },
     inputClass(row, column) {

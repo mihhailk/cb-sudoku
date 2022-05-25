@@ -47,7 +47,7 @@ export default {
 
 <style scoped>
 form {
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -56,9 +56,11 @@ form button {
 }
 
 input {
-  width: 30px;
-  height: 30px;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
   border: 0.5px dashed;
+  text-align: center;
 }
 
 input:focus{
@@ -94,7 +96,6 @@ button {
   color: #fff;
   background-color: #28a745;
   cursor: pointer;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 input[type=number]::-webkit-inner-spin-button,
